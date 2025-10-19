@@ -1,42 +1,69 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
-import { Bot, Workflow, BarChart3, Sparkles, CheckCircle2, Quote } from "lucide-react";
-import heroImage from "@/assets/hero-bg.jpg";
+import { Bot, Database, Mic, Workflow, Brain, Globe, Boxes, BarChart3, CheckCircle2, Quote, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const Home = () => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
   const services = [
     {
       icon: Bot,
-      title: "AI Chatbot Development",
-      description: "Intelligent conversational agents that understand context and deliver personalized responses across all channels.",
+      title: "AI Chatbots",
+      description: "Intelligent conversational agents with GPT, Claude, or Gemini integration for seamless customer interaction.",
+      link: "/services",
+    },
+    {
+      icon: Database,
+      title: "RAG Chatbots",
+      description: "Advanced retrieval-augmented chatbots connected to your data sources with vector database integration.",
+      link: "/services",
+    },
+    {
+      icon: Mic,
+      title: "Voice AI Agents",
+      description: "Smart voice assistants with natural speech processing for call centers, WhatsApp, and apps.",
       link: "/services",
     },
     {
       icon: Workflow,
-      title: "AI Automation Systems",
-      description: "End-to-end workflow automation that eliminates manual tasks and accelerates business operations.",
+      title: "Workflow Automation",
+      description: "End-to-end automation systems that eliminate manual tasks and accelerate operations.",
+      link: "/services",
+    },
+    {
+      icon: Brain,
+      title: "AI Fine-Tuning",
+      description: "Custom model training on your proprietary data for domain-specific intelligence.",
+      link: "/services",
+    },
+    {
+      icon: Globe,
+      title: "AI-Powered Websites",
+      description: "Modern websites integrated with chatbots, analytics, and intelligent automation.",
+      link: "/services",
+    },
+    {
+      icon: Boxes,
+      title: "AI SaaS Platforms",
+      description: "Custom AI-powered platforms built to scale with exceptional user experiences.",
       link: "/services",
     },
     {
       icon: BarChart3,
-      title: "AI Data Analytics",
-      description: "Predictive models and intelligent dashboards that transform raw data into actionable insights.",
-      link: "/services",
-    },
-    {
-      icon: Sparkles,
-      title: "AI SaaS Platforms",
-      description: "Custom AI-powered platforms built to scale with your business and deliver exceptional user experiences.",
+      title: "Predictive Analytics",
+      description: "AI-powered forecasting and intelligent dashboards that transform data into insights.",
       link: "/services",
     },
   ];
 
   const whyChoose = [
-    "End-to-end AI ecosystem development",
-    "Proven expertise in automation & agents",
-    "Fast, scalable deployment",
-    "Ongoing support and optimization",
+    "Intelligent Automation Expertise",
+    "Enterprise-Grade Reliability",
+    "End-to-End Support & Optimization",
+    "Fast, Scalable Deployment",
   ];
 
   const testimonials = [
@@ -57,45 +84,84 @@ const Home = () => {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20">
-        <div 
-          className="absolute inset-0 z-0 opacity-40"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <div className="absolute inset-0 gradient-hero z-0" />
+      <section className="relative overflow-hidden pt-32 pb-24">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10"></div>
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              rotate: [0, 90, 0],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1.2, 1, 1.2],
+              rotate: [90, 0, 90],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-accent/20 to-transparent blur-3xl"
+          />
+        </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto text-center"
+          >
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Transform Your Business with{" "}
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                End-to-End AI Solutions
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-glow">
+                Intelligent AI Systems
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-              From Automation to Advanced AI Agents — We Build, Deploy, and Scale AI Systems for Your Success
+            <p className="text-xl md:text-2xl text-foreground/70 mb-10 leading-relaxed">
+              From Chatbots to Fully Automated Workflows — Aurozen AI builds, deploys, and scales AI solutions that drive measurable growth.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="gradient-primary text-lg px-8">
-                <Link to="/contact">Book a Demo</Link>
+              <Button asChild size="lg" className="gradient-primary text-lg px-8 shadow-glow hover:shadow-hover transition-all">
+                <Link to="/contact">Book a Demo <ArrowRight className="ml-2" size={20} /></Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg px-8">
+              <Button asChild size="lg" variant="outline" className="text-lg px-8 border-primary/50 hover:bg-primary/10">
                 <Link to="/services">Explore Services</Link>
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="py-20 bg-secondary/30">
+      {/* Services Grid */}
+      <section className="py-24 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Core Solutions</h2>

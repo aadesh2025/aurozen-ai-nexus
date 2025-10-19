@@ -5,16 +5,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="bg-black/40 border-t border-white/10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center shadow-glow">
                 <span className="text-white font-bold text-lg">A</span>
               </div>
-              <span className="text-xl font-bold font-serif">Aurozen AI</span>
+              <span className="text-xl font-bold">Aurozen AI</span>
             </div>
             <p className="text-muted-foreground text-sm mb-4 max-w-md">
               Empowering businesses with intelligent, scalable AI solutions. From automation to advanced AI agents, we build systems that transform operations.
