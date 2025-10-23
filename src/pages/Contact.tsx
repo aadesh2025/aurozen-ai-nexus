@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, MessageSquare, Clock, Send } from "lucide-react";
 import { toast } from "sonner";
 
 const Contact = () => {
@@ -30,21 +31,36 @@ const Contact = () => {
   return (
     <div className="min-h-screen pt-24 pb-20">
       {/* Hero */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Let's Build Intelligent Systems Together</h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Whether you're starting small or scaling big, Aurozen AI delivers the intelligence your business needs to thrive
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <Send className="w-16 h-16 mx-auto mb-6 text-primary" />
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 glow-text">
+            Let's Talk AI
+          </h1>
+          <p className="text-xl text-foreground/70 leading-relaxed">
+            Whether you're starting small or scaling big, Aurozen AI delivers the intelligence 
+            your business needs to thrive. Let's build something intelligent together.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-card rounded-2xl p-8 shadow-card border border-border animate-slide-up">
-              <h2 className="text-3xl font-bold mb-6">Get a Free Consultation</h2>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="glass-card p-8"
+            >
+              <h2 className="text-3xl font-bold mb-2">Get a Free Consultation</h2>
+              <p className="text-foreground/70 mb-6">
+                Fill out the form and we'll reach out within 24 hours to discuss your project.
+              </p>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -58,6 +74,7 @@ const Contact = () => {
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     placeholder="John Doe"
+                    className="bg-background/50 border-white/10"
                   />
                 </div>
 
@@ -72,6 +89,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="john@company.com"
+                    className="bg-background/50 border-white/10"
                   />
                 </div>
 
@@ -83,7 +101,7 @@ const Contact = () => {
                     value={formData.businessType} 
                     onValueChange={(value) => setFormData({ ...formData, businessType: value })}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="bg-background/50 border-white/10">
                       <SelectValue placeholder="Select your business type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -98,22 +116,22 @@ const Contact = () => {
 
                 <div>
                   <label htmlFor="serviceNeeded" className="block text-sm font-medium mb-2">
-                    AI Service Needed *
+                    AI Service Interested In *
                   </label>
                   <Select 
                     value={formData.serviceNeeded} 
                     onValueChange={(value) => setFormData({ ...formData, serviceNeeded: value })}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="bg-background/50 border-white/10">
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="basic-chatbot">Basic AI Chatbot</SelectItem>
-                      <SelectItem value="standard-system">Standard AI System</SelectItem>
-                      <SelectItem value="advanced-system">Advanced AI System</SelectItem>
-                      <SelectItem value="analytics">AI Data Analytics</SelectItem>
-                      <SelectItem value="saas-platform">AI SaaS Platform</SelectItem>
-                      <SelectItem value="consulting">AI Consulting</SelectItem>
+                      <SelectItem value="voice-agents">Voice Agents</SelectItem>
+                      <SelectItem value="chatbots">Chatbots</SelectItem>
+                      <SelectItem value="event-automation">Event-to-Event Automation</SelectItem>
+                      <SelectItem value="rag-systems">RAG-Powered Systems</SelectItem>
+                      <SelectItem value="analytics">Predictive Analytics</SelectItem>
+                      <SelectItem value="full-system">Full AI Ecosystem</SelectItem>
                       <SelectItem value="not-sure">Not Sure Yet</SelectItem>
                     </SelectContent>
                   </Select>
@@ -121,80 +139,140 @@ const Contact = () => {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message *
+                    Tell Us About Your Project *
                   </label>
                   <Textarea
                     id="message"
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about your project and requirements..."
+                    placeholder="Describe your requirements, challenges, and goals..."
                     rows={5}
+                    className="bg-background/50 border-white/10"
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full gradient-primary">
-                  Get a Free Consultation
+                <Button type="submit" size="lg" className="w-full gradient-primary shadow-glow hover:shadow-hover">
+                  Get Free Consultation
                 </Button>
               </form>
-            </div>
+            </motion.div>
           </div>
 
           {/* Contact Info */}
           <div className="space-y-6">
-            <div className="bg-card rounded-2xl p-6 shadow-card border border-border animate-slide-up" style={{ animationDelay: '100ms' }}>
-              <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center mb-4">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="glass-card p-6"
+            >
+              <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center mb-4 shadow-glow">
                 <Mail className="text-white" size={24} />
               </div>
               <h3 className="text-xl font-semibold mb-2">Email Us</h3>
-              <a href="mailto:hello@aurozen.ai" className="text-muted-foreground hover:text-primary transition-colors">
+              <a 
+                href="mailto:hello@aurozen.ai" 
+                className="text-foreground/70 hover:text-primary transition-colors"
+              >
                 hello@aurozen.ai
               </a>
-            </div>
+            </motion.div>
 
-            <div className="bg-card rounded-2xl p-6 shadow-card border border-border animate-slide-up" style={{ animationDelay: '200ms' }}>
-              <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center mb-4">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="glass-card p-6"
+            >
+              <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center mb-4 shadow-glow">
                 <Phone className="text-white" size={24} />
               </div>
               <h3 className="text-xl font-semibold mb-2">Call Us</h3>
-              <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
+              <a 
+                href="tel:+1234567890" 
+                className="text-foreground/70 hover:text-primary transition-colors"
+              >
                 +1 (234) 567-890
               </a>
-            </div>
+            </motion.div>
 
-            <div className="bg-card rounded-2xl p-6 shadow-card border border-border animate-slide-up" style={{ animationDelay: '300ms' }}>
-              <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center mb-4">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              className="glass-card p-6"
+            >
+              <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center mb-4 shadow-glow">
                 <MapPin className="text-white" size={24} />
               </div>
               <h3 className="text-xl font-semibold mb-2">Visit Us</h3>
-              <p className="text-muted-foreground">
+              <p className="text-foreground/70">
                 San Francisco, CA<br />
                 United States
               </p>
-            </div>
+            </motion.div>
 
-            {/* AI Chatbot Note */}
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border border-primary/20 animate-slide-up" style={{ animationDelay: '400ms' }}>
-              <h3 className="text-lg font-semibold mb-2">Need Instant Help?</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Our AI chatbot is available 24/7 to answer your questions and help you get started.
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+              className="glass-card p-6 bg-gradient-to-br from-primary/10 to-cyan-500/10 border-primary/20"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <MessageSquare className="text-primary" size={24} />
+                <h3 className="text-lg font-semibold">Need Instant Help?</h3>
+              </div>
+              <p className="text-sm text-foreground/70 mb-4">
+                Our AI chatbot is available 24/7 to answer questions and help you get started.
               </p>
-              <Button variant="outline" size="sm" className="w-full">
+              <Button variant="outline" size="sm" className="w-full border-primary/30 hover:bg-primary/10">
                 Chat with Our AI
               </Button>
-            </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+              className="glass-card p-6"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <Clock className="text-primary" size={20} />
+                <h3 className="font-semibold">Response Time</h3>
+              </div>
+              <p className="text-sm text-foreground/70">
+                We respond to all inquiries within 24 hours during business days.
+              </p>
+            </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Response Time Promise */}
+      {/* CTA Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="bg-secondary/50 rounded-2xl p-8 text-center border border-border">
-          <h3 className="text-2xl font-bold mb-2">We'll respond within 24 hours</h3>
-          <p className="text-muted-foreground">
-            Our team reviews every inquiry personally and will get back to you with next steps
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="glass-card p-12 text-center bg-gradient-to-br from-primary/10 to-cyan-500/10"
+        >
+          <h3 className="text-3xl font-bold mb-4">Prefer a Different Way to Connect?</h3>
+          <p className="text-foreground/70 mb-6">
+            Schedule a call, check out our resources, or explore our services.
           </p>
-        </div>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Button asChild variant="outline" className="border-primary/30 hover:bg-primary/10">
+              <a href="/services">View Services</a>
+            </Button>
+            <Button asChild variant="outline" className="border-primary/30 hover:bg-primary/10">
+              <a href="/pricing">See Pricing</a>
+            </Button>
+            <Button asChild variant="outline" className="border-primary/30 hover:bg-primary/10">
+              <a href="/services/case-studies">Read Case Studies</a>
+            </Button>
+          </div>
+        </motion.div>
       </section>
     </div>
   );
