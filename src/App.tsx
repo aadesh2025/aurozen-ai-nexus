@@ -7,6 +7,11 @@ import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import VoiceAgents from "./pages/VoiceAgents";
+import Chatbots from "./pages/Chatbots";
+import EventAutomation from "./pages/EventAutomation";
+import Integrations from "./pages/Integrations";
+import CaseStudies from "./pages/CaseStudies";
 import Portfolio from "./pages/Portfolio";
 import Pricing from "./pages/Pricing";
 import Blog from "./pages/Blog";
@@ -26,6 +31,11 @@ const App = () => (
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="services" element={<Services />} />
+            <Route path="services/voice-agents" element={<VoiceAgents />} />
+            <Route path="services/chatbots" element={<Chatbots />} />
+            <Route path="services/event-automation" element={<EventAutomation />} />
+            <Route path="services/integrations" element={<Integrations />} />
+            <Route path="services/case-studies" element={<CaseStudies />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="blog" element={<Blog />} />
