@@ -172,10 +172,10 @@ const Contact = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Email Us</h3>
               <a 
-                href="mailto:hello@aurozen.ai" 
+                href="mailto:aadeshworkplace@gmail.com" 
                 className="text-foreground/70 hover:text-primary transition-colors"
               >
-                hello@aurozen.ai
+                aadeshworkplace@gmail.com
               </a>
             </motion.div>
 
@@ -190,10 +190,10 @@ const Contact = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Call Us</h3>
               <a 
-                href="tel:+1234567890" 
+                href="tel:+919345327506" 
                 className="text-foreground/70 hover:text-primary transition-colors"
               >
-                +1 (234) 567-890
+                +91 93453 27506
               </a>
             </motion.div>
 
@@ -206,11 +206,15 @@ const Contact = () => {
               <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center mb-4 shadow-glow">
                 <MapPin className="text-white" size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Visit Us</h3>
-              <p className="text-foreground/70">
-                San Francisco, CA<br />
-                United States
-              </p>
+              <h3 className="text-xl font-semibold mb-2">Follow Us</h3>
+              <a 
+                href="https://instagram.com/aurozenai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
+              >
+                <span>@aurozenai on Instagram</span>
+              </a>
             </motion.div>
 
             <motion.div
@@ -266,7 +270,7 @@ const Contact = () => {
               <a href="/services">View Services</a>
             </Button>
             <Button asChild variant="outline" className="border-primary/30 hover:bg-primary/10">
-              <a href="/pricing">See Pricing</a>
+              <a href="/contact">Request Custom Quote</a>
             </Button>
             <Button asChild variant="outline" className="border-primary/30 hover:bg-primary/10">
               <a href="/services/case-studies">Read Case Studies</a>

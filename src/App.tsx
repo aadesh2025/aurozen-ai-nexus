@@ -13,7 +13,6 @@ import EventAutomation from "./pages/EventAutomation";
 import Integrations from "./pages/Integrations";
 import CaseStudies from "./pages/CaseStudies";
 import Portfolio from "./pages/Portfolio";
-import Pricing from "./pages/Pricing";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -37,7 +36,6 @@ const App = () => (
             <Route path="services/integrations" element={<Integrations />} />
             <Route path="services/case-studies" element={<CaseStudies />} />
             <Route path="portfolio" element={<Portfolio />} />
-            <Route path="pricing" element={<Pricing />} />
             <Route path="blog" element={<Blog />} />
             <Route path="contact" element={<Contact />} />
           </Route>
