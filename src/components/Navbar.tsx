@@ -32,14 +32,14 @@ const Navbar = () => {
     <motion.nav 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className={`fixed top-4 left-4 right-4 z-50 rounded-2xl transition-all duration-300 ${
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 rounded-[2rem] transition-all duration-300 w-[95%] max-w-6xl ${
         isScrolled 
           ? "bg-black/60 backdrop-blur-xl border border-white/10 shadow-glow" 
           : "bg-black/30 backdrop-blur-md border border-white/5"
       }`}
     >
-      <div className="container mx-auto px-6">
-        <div className="flex justify-between items-center h-16">
+      <div className="px-4">
+        <div className="flex justify-between items-center h-14">
           {/* Logo - Only show text on scroll */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center shadow-glow">
@@ -60,12 +60,12 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1 mx-auto">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                   isActive(link.path)
                     ? "text-primary bg-primary/10"
                     : "text-foreground/80 hover:text-primary hover:bg-white/5"
@@ -78,7 +78,7 @@ const Navbar = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button asChild className="gradient-primary shadow-glow hover:shadow-hover transition-all">
+            <Button asChild className="gradient-primary shadow-glow hover:shadow-hover transition-all text-sm px-5 py-1 h-9">
               <Link to="/contact">Book a Demo</Link>
             </Button>
           </div>

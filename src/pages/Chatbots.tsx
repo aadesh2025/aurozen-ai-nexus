@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Bot, ShoppingCart, Scissors, Heart, UtensilsCrossed, GraduationCap, Home, DollarSign, Plane, Building2 } from "lucide-react";
+import { Bot, ShoppingCart, Scissors, Heart, UtensilsCrossed, GraduationCap, Home, DollarSign, Plane, Building2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Chatbots = () => {
@@ -91,39 +91,50 @@ const Chatbots = () => {
         </motion.div>
       </section>
 
-      {/* Chatbot Types Grid */}
+      {/* Chatbot Types - Zig-Zag Step Layout */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {chatbotTypes.map((chatbot, index) => (
+        <div className="space-y-12">
+          {chatbotTypes.map((bot, index) => (
             <motion.div
-              key={chatbot.title}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              key={bot.title}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -10 }}
-              className="group glass-card p-8 relative overflow-hidden"
+              className={`flex flex-col lg:flex-row gap-8 items-center ${
+                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+              }`}
             >
-              {/* Gradient overlay */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${chatbot.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+              {/* Icon Circle */}
+              <motion.div 
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className={`w-32 h-32 rounded-full flex items-center justify-center shadow-glow flex-shrink-0 bg-gradient-to-br ${bot.gradient}`}
+              >
+                <bot.icon className="text-white" size={48} />
+              </motion.div>
               
-              <div className="relative z-10">
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${chatbot.gradient} flex items-center justify-center mb-6 shadow-glow`}>
-                  <chatbot.icon className="text-white" size={32} />
-                </div>
+              {/* Content Card */}
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="glass-card rounded-2xl p-8 shadow-card hover:shadow-glow transition-all group relative overflow-hidden flex-1"
+              >
+                {/* Gradient Background */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 bg-gradient-to-br ${bot.gradient}`}></div>
                 
-                <h3 className="text-2xl font-bold mb-3">{chatbot.title}</h3>
-                <p className="text-foreground/70 mb-6 text-sm leading-relaxed">{chatbot.description}</p>
-                
-                <div className="space-y-2">
-                  {chatbot.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-2 text-sm text-foreground/60">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
+                <div className="relative z-10">
+                  <h3 className="text-3xl font-bold mb-4 group-hover:text-primary transition-colors">{bot.title}</h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed text-lg">{bot.description}</p>
+                  
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {bot.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <CheckCircle2 className="text-primary mt-1 flex-shrink-0" size={18} />
+                        <span className="text-sm text-foreground/80">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

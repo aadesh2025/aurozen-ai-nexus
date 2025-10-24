@@ -175,7 +175,7 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Grid - Masonry Layout */}
       <section className="py-24 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-slide-up">
@@ -185,12 +185,87 @@ const Home = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
-                <ServiceCard {...service} />
-              </div>
-            ))}
+          {/* Staggered Masonry Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-auto">
+            {/* Row 1: Wide + Tall */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0 }}
+              viewport={{ once: true }}
+              className="md:col-span-3 md:row-span-2"
+            >
+              <ServiceCard {...services[0]} />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+              className="md:col-span-3 md:row-span-1"
+            >
+              <ServiceCard {...services[1]} />
+            </motion.div>
+            
+            {/* Row 2: Two Cards */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              viewport={{ once: true }}
+              className="md:col-span-2 md:row-span-1"
+            >
+              <ServiceCard {...services[2]} />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: true }}
+              className="md:col-span-1 md:row-span-2"
+            >
+              <ServiceCard {...services[3]} />
+            </motion.div>
+            
+            {/* Row 3: Diagonal Pattern */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+              className="md:col-span-2 md:row-span-1"
+            >
+              <ServiceCard {...services[4]} />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+              className="md:col-span-3 md:row-span-1"
+            >
+              <ServiceCard {...services[5]} />
+            </motion.div>
+            
+            {/* Row 4: Final Cards */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              viewport={{ once: true }}
+              className="md:col-span-3 md:row-span-1"
+            >
+              <ServiceCard {...services[6]} />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              viewport={{ once: true }}
+              className="md:col-span-3 md:row-span-1"
+            >
+              <ServiceCard {...services[7]} />
+            </motion.div>
           </div>
         </div>
       </section>
